@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.view.HomeActivity">
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fl"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/view"-->
+<!--        app:layout_constraintVertical_weight="1" />-->
+
+    <com.example.seethewayproject.utils.NoScrollViewPager
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        android:id="@+id/home_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+    <View
+        android:id="@+id/view"
+        android:background="#BFC0C2"
+        app:layout_constraintBottom_toTopOf="@id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"/>
+
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_recommend"
+            android:checked="true"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/sel_recommend"
+            android:text="推荐"/>
+        <RadioButton
+            android:id="@+id/rb_video"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/sel_video"
+            android:text="视频" />
+        <RadioButton
+            android:id="@+id/rb_special"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/sel_special"
+            android:text="专题" />
+        <RadioButton
+            android:id="@+id/rb_me"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/sel_me"
+            android:text="我"/>
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
