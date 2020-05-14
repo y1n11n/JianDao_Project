@@ -31,6 +31,7 @@ import com.example.seethewayproject.R;
 import com.example.seethewayproject.base.BaseFragment;
 import com.example.seethewayproject.home.adapter.RecommendListAdapter;
 import com.example.seethewayproject.home.adapter.RemBannerAdapter;
+import com.example.seethewayproject.home.bean.ArticleListBean;
 import com.example.seethewayproject.home.bean.RecommendListBean;
 import com.example.seethewayproject.home.contract.RecommendListContract;
 import com.example.seethewayproject.home.presenter.RecommendListPresenter;
@@ -99,9 +100,9 @@ public class RecommendListFragment extends BaseFragment<RecommendListPresenter> 
 //            //添加头部文字轮播
             addHeaderFlash(recommendList.getData().getFlash_list());
 
-            List<RecommendListBean.DataBean.ArticleListBean> article_list = recommendList.getData().getArticle_list();
+            List<ArticleListBean> article_list = recommendList.getData().getArticle_list();
             for (int i = 0; i <article_list.size(); i++) {
-                RecommendListBean.DataBean.ArticleListBean articleListBean = article_list.get(i);
+                ArticleListBean articleListBean = article_list.get(i);
                 RecommendListBean.RecommendListItemBean bean = new RecommendListBean.RecommendListItemBean();
                 if (articleListBean.getView_type() == 1) { //左图
                     bean.itemType = RecommendListBean.RecommendListItemBean.TYPE_LEFT_IMG;
@@ -121,7 +122,7 @@ public class RecommendListFragment extends BaseFragment<RecommendListPresenter> 
             mAdapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                    RecommendListBean.DataBean.ArticleListBean data = article_list.get(position);
+                    ArticleListBean data = article_list.get(position);
                     Toast.makeText(getActivity(), data.getTheme(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), ItemWebActivity.class);
                     Bundle bundle = new Bundle();
@@ -150,19 +151,16 @@ public class RecommendListFragment extends BaseFragment<RecommendListPresenter> 
                 }
             };
             spannableString.setSpan(clickableSpan, 0, theme.length() - 3, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-//            mTvFlash.setMovementMethod(LinkMovementMethod.getInstance());
+            mTvFlash.setMovementMethod(LinkMovementMethod.getInstance());
             mTvFlash.setText(spannableString);
             builder.append(spannableString);
         }
-//        String s = builder.substring(0, builder.lastIndexOf("   "));
-//        mTvFlash.setMovementMethod(LinkMovementMethod.getInstance());
-//        mTvFlash.setText(spannableString);
         mTvFlash.setText(builder.toString());
-//        mTvFlash.startScroll();
         if (flash_list.size() == 0) {
             mTvFlash.setVisibility(View.GONE);
         }
         mAdapter.addHeaderView(inflate, 1);
+
     }
 
     int current_banner_item;

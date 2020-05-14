@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.example.seethewayproject.R;
+import com.example.seethewayproject.home.bean.ArticleListBean;
 import com.example.seethewayproject.home.bean.RecommendListBean;
 
 import java.util.List;
@@ -49,14 +50,14 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommendLis
     }
 
     private void initNow(BaseViewHolder holder, RecommendListBean.RecommendListItemBean bean) {
-        RecommendListBean.DataBean.ArticleListBean data = (RecommendListBean.DataBean.ArticleListBean) bean.data;
+        ArticleListBean data = (ArticleListBean) bean.data;
         holder.setText(R.id.tv_now_title, "[ "+data.getTheme()+" ]");
         holder.setText(R.id.tv_now_desc, data.getContent());
         holder.setText(R.id.tv_now_time, data.getEdit_time());
     }
 
     private void initVideo(BaseViewHolder holder, RecommendListBean.RecommendListItemBean bean) {
-        RecommendListBean.DataBean.ArticleListBean data = (RecommendListBean.DataBean.ArticleListBean) bean.data;
+        ArticleListBean data = (ArticleListBean) bean.data;
         holder.setText(R.id.tv_video_title, data.getTheme());
         holder.setText(R.id.tv_video_column_name, data.getColumn_name());
         JzvdStd jZVideo = holder.findView(R.id.jiaozi_video_player);
@@ -69,7 +70,7 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommendLis
     }
 
     private void initRightImg(BaseViewHolder holder, RecommendListBean.RecommendListItemBean bean) {
-        RecommendListBean.DataBean.ArticleListBean data = (RecommendListBean.DataBean.ArticleListBean) bean.data;
+        ArticleListBean data = (ArticleListBean) bean.data;
         holder.setText(R.id.tv_right_title, data.getTheme());
         holder.setText(R.id.tv_right_column_name, data.getColumn_name());
         ImageView iv = holder.findView(R.id.iv_right);
@@ -77,14 +78,14 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommendLis
     }
 
     private void initBigImg(BaseViewHolder holder, RecommendListBean.RecommendListItemBean bean) {
-        RecommendListBean.DataBean.ArticleListBean data = (RecommendListBean.DataBean.ArticleListBean) bean.data;
+        ArticleListBean data = (ArticleListBean) bean.data;
         holder.setText(R.id.tv_big_title, data.getTheme());
         holder.setText(R.id.tv_big_column, data.getColumn_name());
         Glide.with(getContext()).load(data.getImage_url()).into((ImageView) holder.findView(R.id.img_big));
     }
 
     private void initLeftImg(BaseViewHolder holder, RecommendListBean.RecommendListItemBean bean) {
-        RecommendListBean.DataBean.ArticleListBean data = (RecommendListBean.DataBean.ArticleListBean) bean.data;
+        ArticleListBean data = (ArticleListBean) bean.data;
         String theme = data.getTheme();
         holder.setText(R.id.tv_title, theme);
         holder.setText(R.id.tv_column_name, data.getColumn_name());

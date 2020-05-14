@@ -16,7 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.seethewayproject.R;
 import com.example.seethewayproject.base.BaseActivity;
 import com.example.seethewayproject.base.BasePresenter;
+import com.example.seethewayproject.home.adapter.ItemWebAdapter;
+import com.example.seethewayproject.home.bean.ArticleListBean;
 import com.example.seethewayproject.home.bean.RecommendListBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +34,7 @@ public class ItemWebActivity extends BaseActivity {
     RecyclerView mRlvItemWeb;
     @BindView(R.id.iv_back)
     ImageView mIvBack;
+    private ItemWebAdapter mAdapter;
 
     @Override
     public int getLayoutId() {
@@ -47,10 +53,18 @@ public class ItemWebActivity extends BaseActivity {
         Bundle rec_item_bundle = getIntent().getBundleExtra("rec_item_bundle");
         int position = rec_item_bundle.getInt("itemData_position");
         RecommendListBean listBean = (RecommendListBean) rec_item_bundle.getSerializable("itemData");
-        
+
+        List<ArticleListBean> article_list = listBean.getData().getArticle_list();
         Log.d("Bundle传递数据--", "position：" + position + ",数据：" + listBean.toString());
         mRlvItemWeb.setLayoutManager(new LinearLayoutManager(this));
-//        ItemWebAdapter adapter = new ItemWebAdapter();
+        mAdapter = new ItemWebAdapter(article_list);
+        mRlvItemWeb.setAdapter(mAdapter);
+        List<ArticleListBean> list = new ArrayList<>();
+        ArticleListBean articleListBean = new ArticleListBean();
+        articleListBean.itemType = ArticleListBean.TYPE_HTML;
+        list.add(articleListBean);
+        mAdapter.addData(list);
+
     }
 
     @Override

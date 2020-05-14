@@ -1,8 +1,21 @@
 package com.example.seethewayproject.home.bean;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.io.Serializable;
 
-public class ArticleListBean implements Serializable {
+public class ArticleListBean implements MultiItemEntity,Serializable {
+
+
+    public static final int TYPE_HTML = 0;
+    public static final int TYPE_SHARE = 1;
+    public static final int TYPE_MORE = 2;
+    public int itemType;
+    @Override
+    public int getItemType() {
+        return itemType;
+    }
+
             /**
              * id : 23879
              * view_type : 1
@@ -188,4 +201,4 @@ public class ArticleListBean implements Serializable {
                         ", video_url='" + video_url + '\'' +
                         '}';
             }
-        }
+}
